@@ -42,7 +42,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### **Packages**: 
-
+load tidyverse package 
 ```{r}
 #load packages
 library(tidyverse)
@@ -92,37 +92,42 @@ customer_retail <- wholesale_customers %>% filter (Channel=="Retail")
 ```
 
 ### **Exploring Data:**
-
+ 
+explore the wholesalecustomers data to get know data well 
 
 #### **Data head:**
 ```{r}
+#Data head
 knitr:: kable(head(wholesale_customers))
 ```
 
 
 #### **Data tail:**
 ```{r}
+#Data tail
 knitr::kable(tail(wholesale_customers))
 ```
 
 #### **see the proportion of 2 channels  Horica and Retail in the Data:** 
-
+ see the prportion of channels horica and Retail  
 ```{r}
-
+#see the proportion of 2 channels  Horica and Retail in the Data
 ggplot(wholesale_customers, aes(Channel)) +
   geom_bar(fill = "#DD8888") 
 
 ```
 
-####**see the proportion of the Regions:**  
-
+#### **see the proportion of the Regions:**  
+also I want to see the proportion of regions 
 ```{r}
+#see the proportion of the Regions
 ggplot(wholesale_customers,aes(Region))+ geom_bar(fill="#DD8888")
 ```
 
-#### ** See the max and min annual spending in the datat:**
+#### **See the max and min annual spending in the datat:**
+max and min spending 
 ```{r}
-
+#See the max and min annual spending in the datat
 wholesale_customers %>% summarise_if(is.numeric, max)
 wholesale_customers %>% summarise_if(is.numeric, min)
 
@@ -131,7 +136,7 @@ wholesale_customers %>% summarise_if(is.numeric, min)
 #### **See the range of Milk annual spending:** 
 
 ```{r}
-
+#See the range of Milk annual spending
 rangespendmilk <- wholesale_customers %>%
   summarise(range(Milk))
 
@@ -142,7 +147,7 @@ rangespendmilk
 #### **See the range of Fresh annual spending:** 
 
 ```{r}
-
+#See the range of Fresh annual spending
 rangespendfresh <- wholesale_customers %>%
   summarise(range(Fresh))
 
@@ -151,11 +156,11 @@ rangespendfresh
 
 
 
-
 #### **See the max and min spennd in Horeca Channel:** 
 
 ```{r}
 
+#See the max and min spennd in Horeca Channel
 
 customer_horeca %>% summarise_if(is.numeric, max)
 customer_horeca %>% summarise_if(is.numeric, min)
@@ -165,16 +170,18 @@ customer_horeca %>% summarise_if(is.numeric, min)
 #### **See the max and min spend in Chanel Retail:**
 
 ```{r}
-
+#See the max and min spend on Chanel Retail
 customer_retail %>% summarise_if (is.numeric, max)
 customer_retail %>% summarise_if(is.numeric, min)
 
 
 ```
 
- #### **see the annual spending of Milk:**
+ #### **see the annual spending on Milk:**
+ see the annual spending on Milk product in 2 channels and 3 regions 
 
 ```{r}
+#see the annual spending of Milk
 ggplot(aes(x = Milk), data = wholesale_customers) +
   geom_histogram(binwidth = 1000,col="#AFC0CB") +
   xlab('Annual Spending (m.u.)') +
@@ -182,9 +189,11 @@ ggplot(aes(x = Milk), data = wholesale_customers) +
 ```
 
 
-#### **see the annual spending of Milk in Horeca channel:**
+#### **see the annual spending on Milk in Horeca channel:**
 
+see the annual spending on Milk product in horica channel 
 ```{r}
+#see the annual spending on Milk in Horeca channel
 ggplot(aes(x = Milk), data = customer_horeca) +
   geom_histogram(binwidth = 1000,col="#AFC0CB") +
   xlab('Annual Spending (m.u.)') +
@@ -192,44 +201,47 @@ ggplot(aes(x = Milk), data = customer_horeca) +
 ```
 
 
-#### **show the annual spending of products through channel Horeca:**
+#### **show the annual spending on products through channel Horeca:**
 
 ```{r}
-
+#show the annual spending on products through channel Horeca
 #Milk
 ggplot( aes(x=Milk), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
 
 ```
 
 ```{r}
+#show the annual spending on products through channel Horeca
 #Fresh
 ggplot( aes(x=Fresh), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
 ```
 
 
 ```{r}
-
+#show the annual spending on products through channel Horeca
 #Grosery
 ggplot( aes(x=Grocery), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
 ```
 
 
 ```{r}
-
+#show the annual spending on products through channel Horeca
 #Frozen
 ggplot( aes(x=Frozen), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
 ```
 
 
 ```{r}
+#show the annual spending on products through channel Horeca
 #Detergents_Paper
 ggplot( aes(x=Detergents_Paper), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
 ```
 
 ```{r}
-
+#show the annual spending on products through channel Horeca
 #Delicassen
 ggplot( aes(x=Delicassen), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
 
 ```
+
 
