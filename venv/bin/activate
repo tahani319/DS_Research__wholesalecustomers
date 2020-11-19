@@ -37,7 +37,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="/Users/tahanialharbi/Downloads/DS_Research__wholesalecustomers/venv"
+=======
+VIRTUAL_ENV="/Users/tahanialharbi/DS_Research__wholesalecustomers/venv"
+>>>>>>> 58647e3c5e23eeda9b4adbc16b482ebfcb17320c
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

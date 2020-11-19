@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/Users/tahanialharbi/Downloads/DS_Research__wholesalecustomers/venv/bin/python3
+=======
+#!/Users/tahanialharbi/DS_Research__wholesalecustomers/venv/bin/python3
+>>>>>>> 58647e3c5e23eeda9b4adbc16b482ebfcb17320c
 # -*- coding: utf-8 -*-
 import re
 import sys
