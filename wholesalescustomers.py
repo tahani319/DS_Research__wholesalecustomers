@@ -40,20 +40,10 @@ wholesalecustomers ['Region'].replace ([1,2,3],['Lisbon', 'Porto', 'Other_Region
 wholesalecustomers.describe()
 
 
-# %%
+
 
 
 #### **see the proportion of 2 channels  Horica and Retail in the Data:** 
 
 
 
-#%%
- 
-
-
-  
-
-# %%
-
-
-# %%
