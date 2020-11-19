@@ -7,7 +7,7 @@ output: html_document
 #### **Description:**
 
 here I would analyze data about wholesales customers and answer some questions 
-about annual spending of products in these Regions  
+about annual spending of products in Horecia channel   
 
 #### **data:** 
 The dataset  refers to clients of a wholesale distributor.
@@ -41,6 +41,7 @@ Attribute Information:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#### **Packages**: 
 
 ```{r}
 #load packages
@@ -80,11 +81,23 @@ levels(wholesale_customers$Channel) <- c ("Horeca", "Retail")
 
 
 
+
+```{r include=FALSE}
+
+#make Horeca dataset and Retail dataset 
+
+customer_horeca <- wholesale_customers%>% filter(Channel=="Horeca")
+customer_retail <- wholesale_customers %>% filter (Channel=="Retail")
+
+```
+
+### **Exploring Data:**
+
+
 #### **Data head:**
 ```{r}
 knitr:: kable(head(wholesale_customers))
 ```
-
 
 
 #### **Data tail:**
@@ -107,7 +120,7 @@ ggplot(wholesale_customers, aes(Channel)) +
 ggplot(wholesale_customers,aes(Region))+ geom_bar(fill="#DD8888")
 ```
 
-#### **what the max and min cost in the datat:**
+#### ** See the max and min annual spending in the datat:**
 ```{r}
 
 wholesale_customers %>% summarise_if(is.numeric, max)
@@ -115,7 +128,7 @@ wholesale_customers %>% summarise_if(is.numeric, min)
 
 ```
 
-#### **What is the range of Milk annual spending?** 
+#### **See the range of Milk annual spending:** 
 
 ```{r}
 
@@ -126,7 +139,7 @@ rangespendmilk
 
 ```
 
-#### **What is the range of Fresh annual spending?** 
+#### **See the range of Fresh annual spending:** 
 
 ```{r}
 
@@ -136,17 +149,10 @@ rangespendfresh <- wholesale_customers %>%
 rangespendfresh
 ```
 
-```{r include=FALSE}
 
-#make Horeca dataset and Retail dataset 
 
-customer_horeca <- wholesale_customers%>% filter(Channel=="Horeca")
 
-customer_retail <- wholesale_customers %>% filter (Channel=="Retail")
-
-```
-
-#### **what the max and min spennd in Horeca Channel?** 
+#### **See the max and min spennd in Horeca Channel:** 
 
 ```{r}
 
@@ -156,7 +162,7 @@ customer_horeca %>% summarise_if(is.numeric, min)
 
 ```
 
-#### **what the max and min spend in Chanel Retail?**
+#### **See the max and min spend in Chanel Retail:**
 
 ```{r}
 
@@ -164,6 +170,25 @@ customer_retail %>% summarise_if (is.numeric, max)
 customer_retail %>% summarise_if(is.numeric, min)
 
 
+```
+
+ #### **see the annual spending of Milk:**
+
+```{r}
+ggplot(aes(x = Milk), data = wholesale_customers) +
+  geom_histogram(binwidth = 1000,col="#AFC0CB") +
+  xlab('Annual Spending (m.u.)') +
+  ylab('Count')
+```
+
+
+#### **see the annual spending of Milk in Horeca channel:**
+
+```{r}
+ggplot(aes(x = Milk), data = customer_horeca) +
+  geom_histogram(binwidth = 1000,col="#AFC0CB") +
+  xlab('Annual Spending (m.u.)') +
+  ylab('Count')
 ```
 
 
