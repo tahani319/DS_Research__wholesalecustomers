@@ -1,0 +1,208 @@
+---
+title: "wholesalecustomers"
+author: "Tahani AlHarbi"
+date: "11/19/2020"
+output: html_document
+---
+#### **Description:**
+
+here I would analyze data about wholesales customers and answer some questions 
+about annual spending of products in these Regions  
+
+#### **data:** 
+The dataset  refers to clients of a wholesale distributor.
+It includes the annual spending in monetary units (m.u.) 
+on diverse product categories
+channel 1 Horeca channel 2 Retail  
+regions: Lisbon, Porto and  other region 
+
+Attribute Information:
+
+- **FRESH:** annual spending (m.u.) on fresh products (Continuous);
+
+- **MILK:** annual spending (m.u.) on milk products (Continuous);
+
+- **GROCERY:** annual spending (m.u.)on grocery products (Continuous);
+
+- **FROZEN:** annual spending (m.u.)on frozen products (Continuous)
+
+- **DETERGENTS_PAPER:** annual spending (m.u.) on detergents and products (Continuous)
+
+- **DELICATESSEN:** annual spending (m.u.)on and delicatessen products (Continuous);
+
+- **CHANNEL:** customers Channel - Horeca (Hotel/Restaurant/Cafe) or Retail channel (Nominal)
+
+- **REGION:** customers Region Lisnon, Oporto or Other (Nominal)
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+#load packages
+library(tidyverse)
+```
+
+
+
+```{r include=FALSE}
+#acess data 
+wholesale_customers <- read.csv("data/wholesalecustomers.csv")
+```
+
+```{r include=FALSE}
+
+#change channel and region into factors 
+wholesale_customers$Region <-  as.factor(wholesale_customers$Region) 
+wholesale_customers$Channel <-  as.factor (wholesale_customers$Channel)
+nlevels(wholesale_customers$Region)
+nlevels(wholesale_customers$Channel)
+
+```
+
+```{r include=FALSE}
+
+#rename Region 1, 2 and 3 to 
+#Lisbon Porto  and Other_Region
+
+levels(wholesale_customers$Region) <- c("Lisbon", "Porto", "Other_Region")
+
+#rename Channel 1 to Horeca  and 2 to Retail
+
+levels(wholesale_customers$Channel) <- c ("Horeca", "Retail")
+
+
+```
+
+
+
+#### **Data head:**
+```{r}
+knitr:: kable(head(wholesale_customers))
+```
+
+
+
+#### **Data tail:**
+```{r}
+knitr::kable(tail(wholesale_customers))
+```
+
+#### **see the proportion of 2 channels  Horica and Retail in the Data:** 
+
+```{r}
+
+ggplot(wholesale_customers, aes(Channel)) +
+  geom_bar(fill = "#DD8888") 
+
+```
+
+####**see the proportion of the Regions:**  
+
+```{r}
+ggplot(wholesale_customers,aes(Region))+ geom_bar(fill="#DD8888")
+```
+
+#### **what the max and min cost in the datat:**
+```{r}
+
+wholesale_customers %>% summarise_if(is.numeric, max)
+wholesale_customers %>% summarise_if(is.numeric, min)
+
+```
+
+#### **What is the range of Milk annual spending?** 
+
+```{r}
+
+rangespendmilk <- wholesale_customers %>%
+  summarise(range(Milk))
+
+rangespendmilk
+
+```
+
+#### **What is the range of Fresh annual spending?** 
+
+```{r}
+
+rangespendfresh <- wholesale_customers %>%
+  summarise(range(Fresh))
+
+rangespendfresh
+```
+
+```{r include=FALSE}
+
+#make Horeca dataset and Retail dataset 
+
+customer_horeca <- wholesale_customers%>% filter(Channel=="Horeca")
+
+customer_retail <- wholesale_customers %>% filter (Channel=="Retail")
+
+```
+
+#### **what the max and min cost in Horeca Channel?** 
+
+```{r}
+
+
+customer_horeca %>% summarise_if(is.numeric, max)
+customer_horeca %>% summarise_if(is.numeric, min)
+
+```
+
+#### **what the max and min cost in Chanel Retail?**
+
+```{r}
+
+customer_retail %>% summarise_if (is.numeric, max)
+customer_retail %>% summarise_if(is.numeric, min)
+
+
+```
+
+
+#### **show the annual spending of products through channel Horeca:**
+
+```{r}
+
+#Milk
+ggplot( aes(x=Milk), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
+
+```
+
+```{r}
+#Fresh
+ggplot( aes(x=Fresh), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
+```
+
+
+```{r}
+
+#Grosery
+ggplot( aes(x=Grocery), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
+```
+
+
+```{r}
+
+#Frozen
+ggplot( aes(x=Frozen), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
+```
+
+
+```{r}
+#Detergents_Paper
+ggplot( aes(x=Detergents_Paper), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
+```
+
+```{r}
+
+#Delicassen
+ggplot( aes(x=Delicassen), data=customer_horeca)+geom_histogram(binwidth = 10000, col="#AFC0CB")
+
+```
+
