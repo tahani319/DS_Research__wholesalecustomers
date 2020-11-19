@@ -45,16 +45,11 @@ wholesalecustomers.describe()
 
 #### **see the proportion of 2 channels  Horica and Retail in the Data:** 
 
-#matplotlib.pyplot.bar(, height, width=0.8, bottom=None, *, align='center', data=None, **kwargs)[source]
-
-
-
+plt.bar(x, height, width=0.8, bottom=None,  align='center')
 
 
 #%%
  
-
-
 
 
   
