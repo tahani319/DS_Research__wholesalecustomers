@@ -45,7 +45,6 @@ wholesalecustomers.describe()
 
 #### **see the proportion of 2 channels  Horica and Retail in the Data:** 
 
-plt.bar(x, height, width=0.8, bottom=None,  align='center')
 
 
 #%%
