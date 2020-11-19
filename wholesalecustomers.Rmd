@@ -177,7 +177,8 @@ customer_retail %>% summarise_if(is.numeric, min)
 
 ```
 
- #### **see the annual spending on Milk:**
+#### **see the annual spending on Milk:**
+ 
  see the annual spending on Milk product in 2 channels and 3 regions 
 
 ```{r}
